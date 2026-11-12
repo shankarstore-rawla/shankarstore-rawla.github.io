@@ -16,7 +16,8 @@
 <meta property="og:image" content="https://shankarstore-rawla.github.io/images/storefront-night.jpg">
 <meta property="og:locale" content="en_IN">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="images/logo.png">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -34,6 +35,7 @@
     "https://shankarstore-rawla.github.io/images/signboard.jpg",
     "https://shankarstore-rawla.github.io/images/store-aisles.jpg"
   ],
+  "logo": "https://shankarstore-rawla.github.io/images/logo.png",
   "telephone": "+91-7410848649",
   "priceRange": "₹",
   "address": {
@@ -113,7 +115,7 @@
   header{position:sticky;top:0;z-index:30;background:var(--header-bg);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
   .nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px}
   .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.2rem;color:var(--brand)}
-  .logo-mark{width:40px;height:40px;border-radius:10px;background:var(--brand);color:var(--on-brand);display:grid;place-items:center;font-size:1.2rem}
+  .logo-img{width:44px;height:44px;border-radius:50%;background:#fff;object-fit:cover;box-shadow:0 0 0 2px var(--accent)}
   nav ul{display:flex;gap:26px;list-style:none;font-weight:500}
   nav a:hover{color:var(--brand)}
   .nav-right{display:flex;align-items:center;gap:10px}
@@ -134,6 +136,10 @@
   .hero-bg{position:absolute;inset:0;background:url("images/store-aisles.jpg") center/cover no-repeat;transform:scale(1.03)}
   .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(60,18,4,.92) 0%,rgba(124,45,18,.78) 45%,rgba(0,0,0,.25) 100%);z-index:1}
   .hero .wrap{position:relative;z-index:2;padding-top:70px;padding-bottom:70px}
+  .hero-brand{display:flex;align-items:center;gap:18px;margin-bottom:18px;flex-wrap:wrap}
+  .hero-brand img{width:112px;height:112px;border-radius:50%;background:#fff;object-fit:cover;box-shadow:0 0 0 4px rgba(255,255,255,.85),0 10px 30px rgba(0,0,0,.35)}
+  .hero-brand .tag{margin-bottom:0}
+  @media (max-width:520px){.hero-brand img{width:84px;height:84px}}
   .tag{display:inline-block;background:var(--accent);color:#3b1606;font-weight:600;padding:6px 14px;border-radius:999px;font-size:.85rem;margin-bottom:18px}
   .hero h1{font-size:clamp(2.4rem,6vw,4rem);line-height:1.1;margin-bottom:8px}
   .hero .hi{font-size:clamp(1.3rem,3vw,1.7rem);opacity:.95;margin-bottom:18px}
@@ -185,22 +191,16 @@
   #reels{background:var(--surface)}
   .reels-head{display:flex;justify-content:space-between;align-items:end;flex-wrap:wrap;gap:16px}
   .ig-btn{background:linear-gradient(45deg,#f58529,#dd2a7b,#8134af);color:#fff}
-  .reels{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px;margin-top:36px;align-items:start}
-  @media (max-width:1000px){.reels{grid-template-columns:repeat(3,minmax(0,1fr))}}
-  @media (max-width:640px){.reels{grid-template-columns:repeat(2,minmax(0,1fr))}}
-  .reel.playing{grid-column:span 2}
-  .reel{position:relative;display:block;border-radius:16px;overflow:hidden;aspect-ratio:9/16;max-width:100%;background:linear-gradient(160deg,#7c2d12,#c2410c 60%,#f59e0b);box-shadow:var(--shadow)}
-  .reel img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
-  .reel:hover img{transform:scale(1.04)}
-  .reel::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,.75));pointer-events:none}
-  .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.92);color:#c2410c;display:grid;place-items:center;z-index:2;box-shadow:0 6px 20px rgba(0,0,0,.35);transition:transform .2s}
-  .play svg{width:28px;height:28px;margin-left:4px}
-  .reel:hover .play{transform:translate(-50%,-50%) scale(1.1)}
-  .reel-cap{position:absolute;left:12px;right:12px;bottom:12px;color:#fff;z-index:2;line-height:1.3;font-size:.9rem}
-  .reel-cap small{display:block;opacity:.85;font-size:.8rem}
-  .reel.playing{aspect-ratio:auto;background:#fff}
-  .reel.playing::after{display:none}
-  .reel iframe{width:100%;height:640px;border:0;display:block}
+  .ig-live{margin-top:36px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:32px;align-items:start}
+  .ig-copy h3{font-size:1.35rem;margin:8px 0 8px;line-height:1.3}
+  .ig-copy p{color:var(--muted)}
+  .live-pill{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;font-weight:600;color:var(--brand);text-transform:uppercase;letter-spacing:.06em}
+  .live-pill i{width:9px;height:9px;border-radius:50%;background:#16a34a;box-shadow:0 0 0 4px rgba(22,163,74,.18)}
+  .ig-frame{border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#fff;box-shadow:var(--shadow)}
+  .ig-frame iframe{display:block;width:100%;height:420px;border:0}
+  .ig-more{display:flex;justify-content:center;padding:12px;border-top:1px solid #eee;background:#fff}
+  .ig-more a{color:#c2410c;font-weight:600;font-size:.92rem}
+  @media (max-width:860px){.ig-live{grid-template-columns:1fr;gap:20px}}
 
   /* Why */
   .why{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;margin-top:40px}
@@ -272,7 +272,7 @@
 
 <header>
   <div class="wrap nav">
-    <a href="#" class="logo"><span class="logo-mark">🛒</span> Shankar Store</a>
+    <a href="#" class="logo"><img class="logo-img" src="images/logo.png" alt="Shankar Store logo" width="44" height="44"> <span>Shankar Store</span></a>
     <nav>
       <ul>
         <li><a href="#about">About</a></li>
@@ -296,7 +296,7 @@
 <section class="hero" style="padding:0">
   <div class="hero-bg"></div>
   <div class="wrap">
-    <span class="tag">Serving Rawla Mandi for 45 years</span>
+    <div class="hero-brand"><img src="images/logo.png" alt="Shankar Store logo, established in 1980" width="112" height="112"><span class="tag">Serving Rawla Mandi since 1980</span></div>
     <h1>Shankar Store</h1>
     <div class="hi">शंकर स्टोर (चाँडक री दुकान)</div>
     <p>Best kirana & departmental goods in Rawla Mandi — on Khanuwali Road, near Shiv Library. Purity and the right price, guaranteed.</p>
@@ -380,44 +380,22 @@
     <div class="reels-head">
       <div>
         <span class="eyebrow">On Instagram</span>
-        <h2>Latest reels from the store</h2>
+        <h2>Reels &amp; posts from the store</h2>
         <p class="lead">Festive stock, new arrivals and offers — follow <b>@shankar_store.rawla</b> for updates.</p>
       </div>
       <a href="https://www.instagram.com/shankar_store.rawla/" target="_blank" rel="noopener" class="btn ig-btn">📸 Follow on Instagram</a>
     </div>
-    <div class="reels">
-      <a class="reel" href="https://www.instagram.com/reel/DfeU1jNhSyI/" target="_blank" rel="noopener" data-reel="DfeU1jNhSyI">
-        <img src="images/reel-DfeU1jNhSyI.jpg" alt="Diwali dry fruits reel" loading="lazy">
-        <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
-        <span class="reel-cap"><b>Diwali dry fruits</b><small>#kirana #deewali #dryfruits</small></span>
-      </a>
-      <a class="reel" href="https://www.instagram.com/reel/Dfb_S81S7k4/" target="_blank" rel="noopener" data-reel="Dfb_S81S7k4">
-        <img src="images/reel-Dfb_S81S7k4.jpg" alt="Deewali in Rawla reel" loading="lazy">
-        <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
-        <span class="reel-cap"><b>Deewali in Rawla</b><small>#deewali #rawla</small></span>
-      </a>
-      <a class="reel" href="https://www.instagram.com/reel/DfYnQCBSjHG/" target="_blank" rel="noopener" data-reel="DfYnQCBSjHG">
-        <img src="images/reel-DfYnQCBSjHG.jpg" alt="Dhanteras special reel" loading="lazy">
-        <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
-        <span class="reel-cap"><b>Dhanteras special</b><small>#bestshop #dhanteras</small></span>
-      </a>
-      <a class="reel" href="https://www.instagram.com/reel/DfaVfMFBIiq/" target="_blank" rel="noopener" data-reel="DfaVfMFBIiq">
-        <img src="images/store-aisles.jpg" alt="Kirana store reel" loading="lazy">
-        <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
-        <span class="reel-cap"><b>Kirana store</b><small>#kirana</small></span>
-      </a>
-      <a class="reel" href="https://www.instagram.com/reel/DetOLDZSqgu/" target="_blank" rel="noopener" data-reel="DetOLDZSqgu">
-        <img src="images/reel-DetOLDZSqgu.jpg" alt="Happy Dussehra reel" loading="lazy">
-        <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
-        <span class="reel-cap"><b>Happy Dussehra</b><small>#dussehra</small></span>
-      </a>
-      <a class="reel" href="https://www.instagram.com/reel/Dd1UiOKSEEq/" target="_blank" rel="noopener" data-reel="Dd1UiOKSEEq">
-        <img src="images/reel-Dd1UiOKSEEq.jpg" alt="Bazaar open notice reel" loading="lazy">
-        <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
-        <span class="reel-cap"><b>Bazaar open notice</b><small>#kirana #rawlamandi</small></span>
-      </a>
+    <div class="ig-live">
+      <div class="ig-copy">
+        <span class="live-pill"><i></i>Updates automatically</span>
+        <h3>Latest posts from @shankar_store.rawla</h3>
+        <p>Our 6 newest reels and posts from Instagram appear here on their own, as soon as we post them. Tap any post to watch.</p>
+      </div>
+      <div class="ig-frame">
+        <iframe id="igFrame" src="https://www.instagram.com/shankar_store.rawla/embed" title="Shankar Store latest Instagram posts" loading="lazy" scrolling="no"></iframe>
+        <div class="ig-more"><a href="https://www.instagram.com/shankar_store.rawla/" target="_blank" rel="noopener">See all posts on Instagram &rarr;</a></div>
+      </div>
     </div>
-    <p class="note">Tap a reel to play it here, or open it on Instagram.</p>
   </div>
 </section>
 
@@ -516,14 +494,13 @@
     apply();
   });
 
-  // Reels: play inline with Instagram's player
-  document.querySelectorAll('.reel[data-reel]').forEach(a => a.addEventListener('click', e => {
-    if (a.classList.contains('playing')) return;
-    e.preventDefault();
-    a.classList.add('playing');
-    a.innerHTML = '<iframe src="https://www.instagram.com/reel/' + a.dataset.reel + '/embed" allowtransparency="true" allow="encrypted-media; autoplay" title="Instagram reel"></iframe>';
-    a.removeAttribute('href');
-  }));
+  // Instagram box: size it to fit the header + 2 rows of 3 posts, so there is no blank space
+  const igF = document.getElementById('igFrame');
+  if (igF) {
+    const fitIg = () => { igF.style.height = Math.round(igF.clientWidth * 2 / 3 + 146) + 'px'; };
+    fitIg();
+    if ('ResizeObserver' in window) new ResizeObserver(fitIg).observe(igF.parentElement); else addEventListener('resize', fitIg);
+  }
 
   // Gallery lightbox
   const imgs = [...document.querySelectorAll('#gallery-grid img')];
