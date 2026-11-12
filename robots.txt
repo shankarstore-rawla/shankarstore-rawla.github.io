@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://shankarstore-rawla.github.io/sitemap.xml
