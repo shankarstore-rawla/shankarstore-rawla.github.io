@@ -327,6 +327,9 @@
   .photo-preview[hidden],.photo-pick[hidden],.photo-step[hidden]{display:none}
   .photo-preview img{width:72px;height:72px;object-fit:cover;border-radius:10px}
   .photo-preview b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .photo-step [hidden]{display:none}
+  .order-done a.btn{text-decoration:none}
+  .photo-step small{color:var(--muted);font-weight:400}
   .photo-step{display:grid;gap:8px;justify-items:center;background:var(--surface-2);border-radius:14px;padding:16px;margin:6px 0;width:min(100%,460px)}
   a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
   @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
@@ -480,13 +483,14 @@
 
     <div class="order-done" id="orderDone" hidden>
       <div class="done-icon" aria-hidden="true">✓</div>
-      <h3>Almost done – tap <em>Send</em> in WhatsApp</h3>
-      <p class="hi order-hi">बस एक कदम – WhatsApp में <b>Send</b> दबाएँ</p>
-      <p>Your order <b id="doneId"></b> has opened in WhatsApp. Send it, and we'll reply to confirm. Estimated ready time: <b id="doneTime"></b>.</p>
+      <h3 id="doneTitle">Almost done – tap <em>Send</em> in WhatsApp</h3>
+      <p class="hi order-hi" id="doneHi">बस एक कदम – WhatsApp में <b>Send</b> दबाएँ</p>
+      <p><span id="doneLead">Your order has opened in WhatsApp. Send it, and we'll reply to confirm.</span> Order <b id="doneId"></b> · Estimated ready time: <b id="doneTime"></b>.</p>
       <div class="photo-step" id="photoStep" hidden>
-        <p><b>Step 2: पर्ची की फोटो भेजें · Send your list photo</b></p>
+        <p id="photoStepTitle"><b>Step 2: पर्ची की फोटो भेजें · Send your list photo</b></p>
+        <a class="btn btn-outline" id="openChat" href="#" target="_blank" rel="noopener" hidden>💬 Shankar Store चैट खोलें · Open chat</a>
         <button type="button" class="btn wa-btn" id="sharePhoto">📷 पर्ची की फोटो भेजें · Send photo</button>
-        <p class="small-note" id="photoHelp"><b>WhatsApp</b> चुनें, फिर <b>Shankar Store</b> चैट (सबसे ऊपर होगी) · Choose WhatsApp, then the Shankar Store chat at the top.</p>
+        <p class="small-note" id="photoHelp"><b>WhatsApp</b> चुनें, फिर <b>Shankar Store</b> चैट · Choose WhatsApp, then the Shankar Store chat.</p>
       </div>
       <p class="small-note">WhatsApp didn't open? <a id="doneLink" href="#" target="_blank" rel="noopener">Tap here to open it</a>, or call <b>074108 48649</b>.</p>
       <button type="button" class="btn btn-outline" id="newOrder">Start a new order</button>
@@ -784,11 +788,13 @@
       msg.textContent = ''; showPhoto(f);
     });
     $('photoRemove').onclick = () => showPhoto(null);
+    let lastText = '', photoFile = null;
+    const canSharePhoto = f => !!(f && navigator.canShare && navigator.share && navigator.canShare({ files: [f] }));
     $('sharePhoto').onclick = async () => {
       if (!photo) return;
-      const data = { files: [photo], text: 'List photo for order ' + ($('doneId').textContent || '') };
+      const data = { files: [photoFile || photo], text: lastText || ('Order ' + ($('doneId').textContent || '')) };
       if (navigator.canShare && navigator.canShare({ files: [photo] })) {
-        try { await navigator.share(data); $('photoHelp').innerHTML = 'Photo shared. If you picked the wrong chat, tap the button again.'; }
+        try { await navigator.share(data); $('photoHelp').innerHTML = 'फोटो भेज दी गई ✓ गलत चैट चुनी हो तो बटन फिर दबाएँ · Shared. Picked the wrong chat? Tap again.'; }
         catch (e) { if (e.name !== 'AbortError') $('photoHelp').innerHTML = 'Couldn\u2019t open sharing. In the WhatsApp chat, tap 📎 and attach the photo.'; }
       } else {
         $('photoHelp').innerHTML = 'This browser can\u2019t share photos directly. In the WhatsApp chat that opened, tap <b>📎</b> (attach) and choose your list photo.';
@@ -823,27 +829,63 @@
       const hhmm = String(Math.floor(n.min / 60)).padStart(2, '0') + String(n.min % 60).padStart(2, '0');
       const id = 'SS-' + String(n.d).padStart(2, '0') + String(n.m).padStart(2, '0') + '-' + hhmm + String(Math.floor(Math.random() * 90 + 10));
       const lines = items.map((i, k) => (k + 1) + '. ' + i.name + (i.qty ? ' – ' + i.qty + ' ' + i.unit : ''));
+      const willShare = canSharePhoto(photo);
       const notes = $('oNotes').value.trim();
       const text = '🛍️ *New pickup order – Shankar Store*\n' +
         'Order: ' + id + '\n' +
         'Name: ' + name + '\nMobile: ' + phone + '\n' +
         'Pickup: ' + fmtDate(current.date) + ', ' + fmtTime(t) + '\n\n' +
         (items.length ? '*Items (' + items.length + '):*\n' + lines.join('\n') : '') +
-        (photo ? (items.length ? '\n\n' : '') + '📷 *पर्ची की फोटो:* अगले मैसेज में भेज रहा/रही हूँ (List photo coming next)' : '') +
+        (photo ? (items.length ? '\n\n' : '') + (willShare ? '📷 *पर्ची की फोटो:* इस मैसेज के साथ (List photo attached)' : '📷 *पर्ची की फोटो:* अगले मैसेज में भेज रहा/रही हूँ (List photo coming next)') : '') +
         (notes ? '\n\nNotes: ' + notes : '') +
         '\n\nकृपया कुल राशि और तैयार होने का समय बताएँ 🙏';
-      const url = 'https://wa.me/' + STORE_WA + '?text=' + encodeURIComponent(text);
+      const textLater = text.replace('इस मैसेज के साथ (List photo attached)', 'अगले मैसेज में भेज रहा/रही हूँ (List photo coming next)');
+      const url = 'https://wa.me/' + STORE_WA + '?text=' + encodeURIComponent(textLater);
       $('doneId').textContent = id; $('doneTime').textContent = fmtTime(t) + ', ' + fmtDate(current.date);
       $('doneLink').href = url;
-      const w = window.open(url, '_blank');
-      if (w) { try { w.opener = null; } catch (e) {} } else location.href = url;
-      $('photoStep').hidden = !photo;
-      form.hidden = true; $('orderDone').hidden = false;
-      $('omPanel').scrollTop = 0;
-      try { localStorage.removeItem(KEY); } catch (e) {}
+      lastText = text;
+      const showDone = mode => {
+        const shared = mode === 'shared';
+        $('doneTitle').innerHTML = shared ? 'Order sent with your list photo ✓' : 'Almost done – tap <em>Send</em> in WhatsApp';
+        $('doneHi').innerHTML = shared ? 'फोटो और ऑर्डर एक साथ भेजा गया' : 'बस एक कदम – WhatsApp में <b>Send</b> दबाएँ';
+        $('doneLead').textContent = shared ? 'We\u2019ll reply on WhatsApp to confirm.' : 'Your order has opened in WhatsApp. Send it, and we\u2019ll reply to confirm.';
+        $('photoStep').hidden = !photo;
+        if (photo) {
+          $('openChat').hidden = !shared;
+          $('openChat').href = url;
+          $('photoStepTitle').innerHTML = shared
+            ? '<b>Shankar Store चैट नहीं मिली? · Couldn\u2019t find our chat?</b><br><small>पहले चैट खोलें, फिर फोटो दोबारा भेजें · Open the chat first, then send the photo again.</small>'
+            : '<b>Step 2: पर्ची की फोटो भेजें · Send your list photo</b>';
+          $('sharePhoto').innerHTML = shared ? '📷 फोटो दोबारा भेजें · Send photo again' : '📷 पर्ची की फोटो भेजें · Send photo';
+          $('photoHelp').innerHTML = canSharePhoto(photo)
+            ? '<b>WhatsApp</b> चुनें, फिर <b>Shankar Store</b> चैट · Choose WhatsApp, then the Shankar Store chat.'
+            : 'WhatsApp चैट में <b>📎</b> दबाकर फोटो जोड़ें · In the WhatsApp chat, tap <b>📎</b> and attach your list photo.';
+        }
+        form.hidden = true; $('orderDone').hidden = false;
+        $('omPanel').scrollTop = 0;
+        try { localStorage.removeItem(KEY); } catch (e) {}
+      };
+      const openWhatsApp = () => {
+        const w = window.open(url, '_blank');
+        if (w) { try { w.opener = null; } catch (e) {} } else location.href = url;
+        showDone('text');
+      };
+      if (willShare) {
+        // One message: the list photo with the full order as its caption
+        const ptype = photo.type || 'image/jpeg';
+        photoFile = new File([photo], id + '-list.' + (ptype.split('/')[1] || 'jpg').replace('jpeg', 'jpg'), { type: ptype });
+        navigator.share({ files: [photoFile], text: text })
+          .then(() => showDone('shared'))
+          .catch(err => {
+            if (err && err.name === 'AbortError') { msg.textContent = 'शेयर रद्द हुआ – दोबारा "ऑर्डर भेजें" दबाएँ · Sharing was cancelled. Tap Send order again.'; return; }
+            openWhatsApp();   // sharing not possible: fall back to text + photo in two steps
+          });
+      } else {
+        openWhatsApp();
+      }
     });
     $('newOrder').onclick = () => {
-      rows.innerHTML = ''; [{}, {}, {}].forEach(addRow); $('oNotes').value = ''; showPhoto(null); $('photoStep').hidden = true;
+      rows.innerHTML = ''; [{}, {}, {}].forEach(addRow); $('oNotes').value = ''; showPhoto(null); $('photoStep').hidden = true; lastText = ''; photoFile = null;
       form.hidden = false; $('orderDone').hidden = true; refreshTimes(false);
       $('omPanel').scrollTop = 0;
     };
