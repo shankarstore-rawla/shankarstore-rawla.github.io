@@ -251,6 +251,64 @@
   .badge:hover{background:rgba(255,255,255,.25)}
   .info-row a{text-decoration:underline}
   @media (max-width:860px){.rev-grid{grid-template-columns:1fr}}
+
+  /* Order for pickup */
+  #order{background:var(--surface-2)}
+  .order-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap}
+  .order-head>div{min-width:0;flex:1 1 420px}
+  .steps{display:flex;gap:10px;list-style:none;flex-wrap:wrap}
+  .steps li{display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 14px 6px 6px;font-weight:500;font-size:.9rem}
+  .steps b{width:26px;height:26px;border-radius:50%;background:var(--brand);color:var(--on-brand);display:grid;place-items:center;font-size:.85rem}
+  .order-card{margin-top:30px;background:var(--surface);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:clamp(18px,3vw,32px)}
+  .order-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:32px}
+  .order-card h3{font-size:1.15rem;margin-bottom:14px}
+  .items-head,.item-row{display:grid;grid-template-columns:minmax(0,1fr) 78px 104px 40px;gap:8px;align-items:center}
+  .items-head{font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:6px}
+  .item-row{margin-bottom:8px}
+  .order-card input,.order-card select,.order-card textarea{width:100%;font:inherit;color:var(--text);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-width:0}
+  .order-card input:focus,.order-card select:focus,.order-card textarea:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent}
+  .order-card input.bad{border-color:#dc2626;background:rgba(220,38,38,.06)}
+  .del-item{width:40px;height:40px;border-radius:10px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;font-size:1.1rem}
+  .del-item:hover{color:#dc2626;border-color:#dc2626}
+  .add-item{margin:6px 0 18px;padding:9px 16px;font-size:.9rem}
+  .field{display:grid;gap:6px;margin-bottom:14px}
+  .field>span{font-size:.88rem;font-weight:500}
+  .seg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .seg label{position:relative}
+  .seg input{position:absolute;opacity:0;pointer-events:none}
+  .seg span{display:block;text-align:center;padding:10px;border:1px solid var(--line);border-radius:10px;cursor:pointer;font-weight:500;background:var(--bg)}
+  .seg input:checked+span{background:var(--brand);color:var(--on-brand);border-color:var(--brand)}
+  .seg input:focus-visible+span{outline:3px solid var(--accent);outline-offset:2px}
+  .ready{background:var(--surface-2);border:1px dashed var(--accent);border-radius:12px;padding:12px 14px;margin-bottom:16px;font-size:.92rem}
+  .ready b{color:var(--brand)}
+  .wa-btn{width:100%;justify-content:center;background:#16a34a;color:#fff;font-size:1rem;padding:14px 22px;cursor:pointer}
+  .wa-btn:hover{background:#15803d}
+  .wa-btn svg{width:22px;height:22px}
+  .form-msg{color:#dc2626;font-size:.9rem;margin-top:10px;min-height:1.2em}
+  .small-note{color:var(--muted);font-size:.82rem;margin-top:6px}
+  .order-done{margin-top:30px;background:var(--surface);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:36px 24px;text-align:center;display:grid;justify-items:center;gap:10px}
+  .order-done[hidden]{display:none}
+  .done-icon{width:64px;height:64px;border-radius:50%;background:#16a34a;color:#fff;display:grid;place-items:center;font-size:2rem;font-weight:700}
+  .order-done p{max-width:520px;color:var(--muted)}
+  .order-done a{color:var(--brand);text-decoration:underline}
+  @media (max-width:860px){.order-grid{grid-template-columns:1fr}}
+  @media (max-width:520px){.items-head{display:none}.item-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr) 40px;padding-bottom:10px;border-bottom:1px dashed var(--line);margin-bottom:10px}.item-row .it-name{grid-column:1/-1}}
+  .order-hi{font-size:1.15rem;color:var(--muted);margin:-6px 0 10px}
+  .order-card .btn-outline,.order-done .btn-outline{background:transparent;cursor:pointer}
+  .photo-box{margin:2px 0 18px}
+  .photo-or{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:.85rem;margin-bottom:10px}
+  .photo-or::before,.photo-or::after{content:"";flex:1;border-top:1px solid var(--line)}
+  .photo-pick{position:relative;display:flex;gap:14px;align-items:center;border:2px dashed var(--accent);border-radius:14px;padding:14px 16px;cursor:pointer;background:var(--bg)}
+  .photo-pick:hover{background:var(--surface-2)}
+  .photo-pick input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%}
+  .photo-pick:focus-within{outline:3px solid var(--accent);outline-offset:2px}
+  .photo-ico{font-size:1.8rem}
+  .photo-pick small,.photo-preview small{display:block;color:var(--muted);font-size:.82rem}
+  .photo-preview{display:grid;grid-template-columns:72px minmax(0,1fr) 40px;gap:12px;align-items:center;border:1px solid var(--line);border-radius:14px;padding:10px;background:var(--bg)}
+  .photo-preview[hidden],.photo-pick[hidden],.photo-step[hidden]{display:none}
+  .photo-preview img{width:72px;height:72px;object-fit:cover;border-radius:10px}
+  .photo-preview b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .photo-step{display:grid;gap:8px;justify-items:center;background:var(--surface-2);border-radius:14px;padding:16px;margin:6px 0;width:min(100%,460px)}
   a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
   @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
   footer{background:var(--footer);color:var(--footer-text);padding:28px 0;font-size:.9rem}
@@ -275,6 +333,7 @@
     <a href="#" class="logo"><img class="logo-img" src="images/logo.png" alt="Shankar Store logo" width="44" height="44"> <span>Shankar Store</span></a>
     <nav>
       <ul>
+        <li><a href="#order">Order</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#products">Products</a></li>
         <li><a href="#gallery">Gallery</a></li>
@@ -301,7 +360,8 @@
     <div class="hi">शंकर स्टोर (चाँडक री दुकान)</div>
     <p>Best kirana & departmental goods in Rawla Mandi — on Khanuwali Road, near Shiv Library. Purity and the right price, guaranteed.</p>
     <div class="cta">
-      <a href="tel:+917410848649" class="btn btn-primary">📞 074108 48649</a>
+      <a href="#order" class="btn btn-primary">🛍️ Order for pickup</a>
+      <a href="tel:+917410848649" class="btn btn-ghost">📞 074108 48649</a>
       <a href="https://maps.google.com/?cid=16125120685336696463" target="_blank" rel="noopener" class="btn btn-ghost">📍 Get Directions</a>
     </div>
     <div class="badges">
@@ -328,6 +388,87 @@
         <div class="stat"><b>4.5★</b><span>Google rating</span></div>
         <div class="stat"><b>14 hrs</b><span>Open every day</span></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section id="order">
+  <div class="wrap">
+    <div class="order-head">
+      <div>
+        <span class="eyebrow">Order in advance · पहले से ऑर्डर करें</span>
+        <h2>Order now, pick up when it's ready</h2>
+        <p class="hi order-hi">ऑर्डर करें, तैयार होने पर दुकान से ले जाएँ</p>
+        <p class="lead">Add your items, choose a pickup time and send the list to us on WhatsApp. We pack it and keep it ready at the counter. <span class="hi">सामान की लिस्ट भेजें, हम तैयार रखेंगे।</span></p>
+      </div>
+      <ol class="steps">
+        <li><b>1</b><span>Add items · सामान लिखें</span></li>
+        <li><b>2</b><span>Pick a time · समय चुनें</span></li>
+        <li><b>3</b><span>Send on WhatsApp · भेजें</span></li>
+      </ol>
+    </div>
+
+    <form id="orderForm" class="order-card" novalidate>
+      <div class="order-grid">
+        <div class="order-main">
+          <h3>Your items <span class="hi">/ सामान</span></h3>
+          <div class="items-head" aria-hidden="true"><span>Item · सामान</span><span>Qty · मात्रा</span><span>Unit</span><span></span></div>
+          <div id="itemRows"></div>
+          <button type="button" id="addItem" class="btn btn-outline add-item">+ Add another item · और जोड़ें</button>
+          <div class="photo-box">
+            <div class="photo-or"><span>or · या</span></div>
+            <label class="photo-pick" id="photoPick">
+              <input type="file" id="oPhoto" accept="image/*">
+              <span class="photo-ico" aria-hidden="true">📷</span>
+              <span><b>पर्ची की फोटो भेजें · Send your list photo</b><small>लिखी हुई पर्ची है? फोटो लें, टाइप करने की ज़रूरत नहीं · Take a picture of your written list</small></span>
+            </label>
+            <div class="photo-preview" id="photoPreview" hidden>
+              <img id="photoImg" alt="Your list photo">
+              <div><b id="photoName">List photo</b><small>ऑर्डर मैसेज के बाद यह फोटो WhatsApp पर भेजें · You'll send this after the order message.</small></div>
+              <button type="button" class="del-item" id="photoRemove" aria-label="Remove photo">×</button>
+            </div>
+          </div>
+          <label class="field">
+            <span>Notes · कोई खास बात (optional)</span>
+            <textarea id="oNotes" rows="2" maxlength="300" placeholder="Brand preference, packing, substitutions…"></textarea>
+          </label>
+        </div>
+
+        <div class="order-side">
+          <h3>Pickup details <span class="hi">/ पिकअप</span></h3>
+          <label class="field"><span>Your name · आपका नाम</span><input id="oName" type="text" autocomplete="name" maxlength="60" required></label>
+          <label class="field"><span>Mobile number · मोबाइल नंबर</span><input id="oPhone" type="tel" inputmode="numeric" autocomplete="tel" maxlength="14" placeholder="10-digit mobile" required></label>
+          <div class="field">
+            <span>Pickup day · कब लेंगे</span>
+            <div class="seg" role="radiogroup" aria-label="Pickup day">
+              <label><input type="radio" name="oDay" value="0" checked><span id="dayLbl0">Today</span></label>
+              <label><input type="radio" name="oDay" value="1"><span id="dayLbl1">Tomorrow</span></label>
+            </div>
+          </div>
+          <label class="field"><span>Pickup time · समय</span><select id="oTime"></select></label>
+          <div class="ready" id="readyBox" aria-live="polite"></div>
+          <button type="submit" class="btn wa-btn">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.8 2.8 0 0 0 1.8-1.3 2.3 2.3 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>
+            Send order on WhatsApp · ऑर्डर भेजें
+          </button>
+          <p class="form-msg" id="formMsg" role="alert"></p>
+          <p class="small-note">दाम और उपलब्धता दुकान WhatsApp पर बताएगी। भुगतान पिकअप पर नकद या UPI से। · Prices are confirmed by the store on WhatsApp. Pay at pickup by cash or UPI.</p>
+        </div>
+      </div>
+    </form>
+
+    <div class="order-done" id="orderDone" hidden>
+      <div class="done-icon" aria-hidden="true">✓</div>
+      <h3>Almost done – tap <em>Send</em> in WhatsApp</h3>
+      <p class="hi order-hi">बस एक कदम – WhatsApp में <b>Send</b> दबाएँ</p>
+      <p>Your order <b id="doneId"></b> has opened in WhatsApp. Send it, and we'll reply to confirm. Estimated ready time: <b id="doneTime"></b>.</p>
+      <div class="photo-step" id="photoStep" hidden>
+        <p><b>Step 2: पर्ची की फोटो भेजें · Send your list photo</b></p>
+        <button type="button" class="btn wa-btn" id="sharePhoto">📷 पर्ची की फोटो भेजें · Send photo</button>
+        <p class="small-note" id="photoHelp"><b>WhatsApp</b> चुनें, फिर <b>Shankar Store</b> चैट (सबसे ऊपर होगी) · Choose WhatsApp, then the Shankar Store chat at the top.</p>
+      </div>
+      <p class="small-note">WhatsApp didn't open? <a id="doneLink" href="#" target="_blank" rel="noopener">Tap here to open it</a>, or call <b>074108 48649</b>.</p>
+      <button type="button" class="btn btn-outline" id="newOrder">Start a new order</button>
     </div>
   </div>
 </section>
@@ -501,6 +642,159 @@
     fitIg();
     if ('ResizeObserver' in window) new ResizeObserver(fitIg).observe(igF.parentElement); else addEventListener('resize', fitIg);
   }
+
+  // ---------- Order for pickup ----------
+  (function () {
+    const STORE_WA = '917410848649';
+    const OPEN_MIN = 8 * 60, CLOSE_MIN = 22 * 60;   // store hours 8 AM – 10 PM
+    const NORMAL_PREP = 30, FESTIVE_PREP = 120;      // minutes
+    const FESTIVE_AFTER_MIN = 12 * 60;               // festive rule applies to orders placed after 12 PM
+    const SLOT = 15;                                 // pickup slots every 15 minutes
+    // Festive days (YYYY-MM-DD, Indian date). Add dates here when the festival list is ready.
+    const FESTIVE_DATES = [];
+    const UNITS = ['pcs', 'kg', 'g', 'litre', 'ml', 'packet', 'box', 'dozen'];
+
+    const $ = id => document.getElementById(id);
+    const form = $('orderForm'); if (!form) return;
+    const rows = $('itemRows'), timeSel = $('oTime'), readyBox = $('readyBox'), msg = $('formMsg');
+
+    // Current date/time in India, whatever the visitor's phone timezone is
+    function istNow() {
+      const p = Object.fromEntries(new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Kolkata', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(new Date()).map(x => [x.type, x.value]));
+      return { y: +p.year, m: +p.month, d: +p.day, min: +p.hour * 60 + +p.minute };
+    }
+    const ymd = (y, m, d) => { const t = new Date(Date.UTC(y, m - 1, d)); return t.toISOString().slice(0, 10); };
+    const addDays = (iso, n) => { const t = new Date(iso + 'T00:00:00Z'); t.setUTCDate(t.getUTCDate() + n); return t.toISOString().slice(0, 10); };
+    const fmtTime = min => { let h = Math.floor(min / 60), m = min % 60, ap = h >= 12 ? 'PM' : 'AM'; h = h % 12 || 12; return h + ':' + String(m).padStart(2, '0') + ' ' + ap; };
+    const fmtDate = iso => new Date(iso + 'T00:00:00Z').toLocaleDateString('en-IN', { timeZone: 'UTC', weekday: 'short', day: 'numeric', month: 'short' });
+    const ceilSlot = min => Math.ceil(min / SLOT) * SLOT;
+
+    // Earliest ready time + available slots for today (0) or tomorrow (1)
+    function plan(dayOffset) {
+      const n = istNow(), today = ymd(n.y, n.m, n.d);
+      const festive = FESTIVE_DATES.includes(today) && n.min >= FESTIVE_AFTER_MIN;
+      const prep = festive ? FESTIVE_PREP : NORMAL_PREP;
+      const date = addDays(today, dayOffset);
+      let first;
+      if (dayOffset === 0) first = ceilSlot(Math.max(n.min, OPEN_MIN) + prep);
+      else first = ceilSlot(OPEN_MIN + NORMAL_PREP);   // tomorrow: ready from 8:30 AM
+      const slots = []; for (let t = first; t <= CLOSE_MIN - SLOT; t += SLOT) slots.push(t);
+      return { date, prep, festive, slots };
+    }
+
+    let current = null;
+    function refreshTimes(keep) {
+      const day = +form.querySelector('input[name=oDay]:checked').value;
+      const prev = keep ? timeSel.value : '';
+      let p = plan(day);
+      const todayFull = plan(0).slots.length === 0;
+      $('dayLbl0').textContent = todayFull ? 'Today (closed)' : 'Today';
+      form.querySelector('input[name=oDay][value="0"]').disabled = todayFull;
+      if (day === 0 && todayFull) { form.querySelector('input[name=oDay][value="1"]').checked = true; p = plan(1); }
+      $('dayLbl1').textContent = 'Tomorrow, ' + fmtDate(plan(1).date).replace(/^\w+,?\s*/, '');
+      timeSel.innerHTML = p.slots.map((t, i) => '<option value="' + t + '">' + fmtTime(t) + (i === 0 ? ' (earliest)' : '') + '</option>').join('');
+      if (prev && p.slots.includes(+prev)) timeSel.value = prev;
+      current = p; updateReady();
+    }
+    function updateReady() {
+      if (!current || !timeSel.value) { readyBox.textContent = 'No pickup times left for this day.'; return; }
+      const t = +timeSel.value;
+      readyBox.innerHTML = 'Estimated ready time: <b>' + fmtTime(t) + ', ' + fmtDate(current.date) + '</b>' +
+        (current.festive ? '<br><small>Festival rush today: orders after 12 PM need about 2 hours.</small>' : '<br><small>We need about ' + current.prep + ' minutes to pack your order.</small>');
+    }
+
+    function addRow(item = {}) {
+      const r = document.createElement('div'); r.className = 'item-row';
+      const idx = rows.children.length + 1;
+      r.innerHTML = '<input type="text" class="it-name" maxlength="60" placeholder="Item name, e.g. Aashirvaad atta" aria-label="Item ' + idx + ' name">' +
+        '<input type="number" class="it-qty" min="0" step="any" inputmode="decimal" placeholder="1" aria-label="Item ' + idx + ' quantity">' +
+        '<select class="it-unit" aria-label="Item ' + idx + ' unit">' + UNITS.map(u => '<option>' + u + '</option>').join('') + '</select>' +
+        '<button type="button" class="del-item" aria-label="Remove item ' + idx + '">×</button>';
+      r.querySelector('.it-name').value = item.name || '';
+      r.querySelector('.it-qty').value = item.qty || '';
+      if (item.unit) r.querySelector('.it-unit').value = item.unit;
+      r.querySelector('.del-item').onclick = () => { if (rows.children.length > 1) r.remove(); else { r.querySelector('.it-name').value = ''; r.querySelector('.it-qty').value = ''; } save(); };
+      rows.appendChild(r); return r;
+    }
+    // Optional photo of a written list (stays on the customer's phone; sent by them on WhatsApp)
+    let photo = null;
+    const photoIn = $('oPhoto');
+    function showPhoto(f) {
+      photo = f || null;
+      $('photoPreview').hidden = !photo; $('photoPick').hidden = !!photo;
+      if (photo) { $('photoImg').src = URL.createObjectURL(photo); $('photoName').textContent = photo.name || 'List photo'; }
+      else photoIn.value = '';
+    }
+    photoIn.addEventListener('change', () => {
+      const f = photoIn.files && photoIn.files[0];
+      if (f && !/^image\//.test(f.type)) { msg.textContent = 'Please choose a photo (image file).'; photoIn.value = ''; return; }
+      msg.textContent = ''; showPhoto(f);
+    });
+    $('photoRemove').onclick = () => showPhoto(null);
+    $('sharePhoto').onclick = async () => {
+      if (!photo) return;
+      const data = { files: [photo], text: 'List photo for order ' + ($('doneId').textContent || '') };
+      if (navigator.canShare && navigator.canShare({ files: [photo] })) {
+        try { await navigator.share(data); $('photoHelp').innerHTML = 'Photo shared. If you picked the wrong chat, tap the button again.'; }
+        catch (e) { if (e.name !== 'AbortError') $('photoHelp').innerHTML = 'Couldn\u2019t open sharing. In the WhatsApp chat, tap 📎 and attach the photo.'; }
+      } else {
+        $('photoHelp').innerHTML = 'This browser can\u2019t share photos directly. In the WhatsApp chat that opened, tap <b>📎</b> (attach) and choose your list photo.';
+      }
+    };
+
+    const readItems = () => [...rows.children].map(r => ({ name: r.querySelector('.it-name').value.trim(), qty: r.querySelector('.it-qty').value.trim(), unit: r.querySelector('.it-unit').value })).filter(i => i.name);
+
+    // Keep an unsent draft on this phone
+    const KEY = 'ss-order-draft';
+    function save() { try { localStorage.setItem(KEY, JSON.stringify({ items: readItems(), name: $('oName').value, phone: $('oPhone').value, notes: $('oNotes').value })); } catch (e) {} }
+    let draft = null; try { draft = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) {}
+    (draft && draft.items && draft.items.length ? draft.items : [{}, {}, {}]).forEach(addRow);
+    if (draft) { $('oName').value = draft.name || ''; $('oPhone').value = draft.phone || ''; $('oNotes').value = draft.notes || ''; }
+    $('addItem').onclick = () => { addRow().querySelector('.it-name').focus(); };
+    form.addEventListener('input', save);
+    form.querySelectorAll('input[name=oDay]').forEach(x => x.addEventListener('change', () => refreshTimes(false)));
+    timeSel.addEventListener('change', updateReady);
+    refreshTimes(false);
+    setInterval(() => refreshTimes(true), 60000);
+
+    form.addEventListener('submit', e => {
+      e.preventDefault(); msg.textContent = '';
+      form.querySelectorAll('.bad').forEach(x => x.classList.remove('bad'));
+      const items = readItems(), name = $('oName').value.trim(), phone = $('oPhone').value.replace(/\D/g, '').replace(/^(91|0)(?=\d{10}$)/, '');
+      if (!items.length && !photo) { msg.textContent = 'कम से कम एक सामान लिखें या पर्ची की फोटो जोड़ें · Please add an item or a list photo.'; rows.querySelector('.it-name').classList.add('bad'); rows.querySelector('.it-name').focus(); return; }
+      if (!name) { msg.textContent = 'अपना नाम लिखें · Please enter your name.'; $('oName').classList.add('bad'); $('oName').focus(); return; }
+      if (!/^[6-9]\d{9}$/.test(phone)) { msg.textContent = 'सही 10 अंकों का मोबाइल नंबर लिखें · Please enter a valid 10-digit mobile number.'; $('oPhone').classList.add('bad'); $('oPhone').focus(); return; }
+      refreshTimes(true);
+      if (!timeSel.value) { msg.textContent = 'No pickup times left for this day. Please choose tomorrow.'; return; }
+      const t = +timeSel.value, n = istNow();
+      const hhmm = String(Math.floor(n.min / 60)).padStart(2, '0') + String(n.min % 60).padStart(2, '0');
+      const id = 'SS-' + String(n.d).padStart(2, '0') + String(n.m).padStart(2, '0') + '-' + hhmm + String(Math.floor(Math.random() * 90 + 10));
+      const lines = items.map((i, k) => (k + 1) + '. ' + i.name + (i.qty ? ' – ' + i.qty + ' ' + i.unit : ''));
+      const notes = $('oNotes').value.trim();
+      const text = '🛍️ *New pickup order – Shankar Store*\n' +
+        'Order: ' + id + '\n' +
+        'Name: ' + name + '\nMobile: ' + phone + '\n' +
+        'Pickup: ' + fmtDate(current.date) + ', ' + fmtTime(t) + '\n\n' +
+        (items.length ? '*Items (' + items.length + '):*\n' + lines.join('\n') : '') +
+        (photo ? (items.length ? '\n\n' : '') + '📷 *पर्ची की फोटो:* अगले मैसेज में भेज रहा/रही हूँ (List photo coming next)' : '') +
+        (notes ? '\n\nNotes: ' + notes : '') +
+        '\n\nकृपया कुल राशि और तैयार होने का समय बताएँ 🙏';
+      const url = 'https://wa.me/' + STORE_WA + '?text=' + encodeURIComponent(text);
+      $('doneId').textContent = id; $('doneTime').textContent = fmtTime(t) + ', ' + fmtDate(current.date);
+      $('doneLink').href = url;
+      const w = window.open(url, '_blank');
+      if (w) { try { w.opener = null; } catch (e) {} } else location.href = url;
+      $('photoStep').hidden = !photo;
+      form.hidden = true; $('orderDone').hidden = false;
+      $('orderDone').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      try { localStorage.removeItem(KEY); } catch (e) {}
+    });
+    $('newOrder').onclick = () => {
+      rows.innerHTML = ''; [{}, {}, {}].forEach(addRow); $('oNotes').value = ''; showPhoto(null); $('photoStep').hidden = true;
+      form.hidden = false; $('orderDone').hidden = true; refreshTimes(false);
+      $('order').scrollIntoView({ behavior: 'smooth' });
+    };
+  })();
 
   // Gallery lightbox
   const imgs = [...document.querySelectorAll('#gallery-grid img')];
