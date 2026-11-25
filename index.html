@@ -70,8 +70,8 @@
   ],
   "aggregateRating": {
     "@type": "AggregateRating",
-    "ratingValue": "4.5",
-    "reviewCount": "4"
+    "ratingValue": "4.6",
+    "reviewCount": "5"
   },
   "sameAs": [
     "https://www.instagram.com/shankar_store.rawla/",
@@ -244,6 +244,7 @@
   .who small{display:block;color:var(--muted);font-size:.8rem}
   .avatar{width:42px;height:42px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center;font-weight:600}
   .rev blockquote{font-size:1.15rem}
+  .rev-tr{display:block;color:var(--muted);font-size:.85rem;margin-top:6px}
   .cta-rev{background:var(--surface-2)}
   .cta-rev p{color:var(--muted);font-size:.92rem;margin:6px 0 10px}
   .cta-rev a{color:var(--brand);font-weight:600}
@@ -253,7 +254,25 @@
   @media (max-width:860px){.rev-grid{grid-template-columns:1fr}}
 
   /* Order for pickup */
-  #order{background:var(--surface-2)}
+  .btn-order{background:#16a34a;color:#fff;cursor:pointer}
+  .btn-order:hover{background:#15803d}
+  .btn-call{border:1px solid var(--line);color:var(--text);background:var(--surface)}
+  .btn-call:hover{border-color:var(--brand);color:var(--brand)}
+  .nav .btn.btn-order span{display:inline}
+  @media (max-width:440px){.logo span{display:none}.nav .btn{padding:9px 14px}.nav-right{gap:6px}.theme-btn{width:40px;height:40px}}
+  body.modal-open{overflow:hidden}
+  .order-modal{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;padding:calc(16px + env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) calc(16px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px))}
+  .order-modal[hidden]{display:none}
+  .om-backdrop{position:absolute;inset:0;background:rgba(20,10,4,.6);backdrop-filter:blur(3px);animation:omFade .2s ease}
+  .om-panel{position:relative;width:min(1100px,100%);max-height:100%;overflow:auto;overscroll-behavior:contain;background:var(--surface-2);color:var(--text);border-radius:22px;box-shadow:0 30px 80px rgba(0,0,0,.45);padding:clamp(18px,3vw,34px);animation:omUp .25s ease}
+  .om-panel:focus{outline:none}
+  .om-close{position:sticky;top:0;float:right;margin:-6px -6px 0 12px;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--text);font-size:1.5rem;line-height:1;cursor:pointer;z-index:2}
+  .om-close:hover{border-color:var(--brand);color:var(--brand)}
+  .order-modal h2{font-size:clamp(1.4rem,3vw,2rem);margin-top:2px}
+  @keyframes omFade{from{opacity:0}}
+  @keyframes omUp{from{opacity:0;transform:translateY(16px)}}
+  @media (max-width:640px){.order-modal{padding:0}.om-panel{border-radius:0;height:100%;max-height:none;padding-top:calc(16px + env(safe-area-inset-top, 0px));padding-bottom:calc(24px + env(safe-area-inset-bottom, 0px))}}
+  @media (prefers-reduced-motion:reduce){.om-backdrop,.om-panel{animation:none}}
   .order-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap}
   .order-head>div{min-width:0;flex:1 1 420px}
   .steps{display:flex;gap:10px;list-style:none;flex-wrap:wrap}
@@ -333,7 +352,6 @@
     <a href="#" class="logo"><img class="logo-img" src="images/logo.png" alt="Shankar Store logo" width="44" height="44"> <span>Shankar Store</span></a>
     <nav>
       <ul>
-        <li><a href="#order">Order</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#products">Products</a></li>
         <li><a href="#gallery">Gallery</a></li>
@@ -347,7 +365,8 @@
         <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
         <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
       </button>
-      <a href="tel:+917410848649" class="btn btn-primary">📞 <span>Call Now</span></a>
+      <a href="#order" class="btn btn-order order-open">🛍️ <span>Order Now</span></a>
+      <a href="tel:+917410848649" class="btn btn-call" aria-label="Call Shankar Store">📞 <span>Call</span></a>
     </div>
   </div>
 </header>
@@ -360,12 +379,12 @@
     <div class="hi">शंकर स्टोर (चाँडक री दुकान)</div>
     <p>Best kirana & departmental goods in Rawla Mandi — on Khanuwali Road, near Shiv Library. Purity and the right price, guaranteed.</p>
     <div class="cta">
-      <a href="#order" class="btn btn-primary">🛍️ Order for pickup</a>
+      <a href="#order" class="btn btn-primary order-open">🛍️ Order Now · ऑर्डर करें</a>
       <a href="tel:+917410848649" class="btn btn-ghost">📞 074108 48649</a>
       <a href="https://maps.google.com/?cid=16125120685336696463" target="_blank" rel="noopener" class="btn btn-ghost">📍 Get Directions</a>
     </div>
     <div class="badges">
-      <a class="badge" href="https://www.google.com/search?q=Shankar+Store+Rawla+Mandi#lrd=0x393e6546a06c790d:0xdfc7efd429cc168f,1,,,," target="_blank" rel="noopener">⭐ 4.5 on Google · 4 reviews</a>
+      <a class="badge" href="https://www.google.com/search?q=Shankar+Store+Rawla+Mandi#lrd=0x393e6546a06c790d:0xdfc7efd429cc168f,1,,,," target="_blank" rel="noopener">⭐ 4.6 on Google · 5 reviews</a>
       <span class="badge">🕗 Open daily · 8 AM – 10 PM</span>
       <span class="badge">🏪 Kirana & Departmental Store</span>
     </div>
@@ -385,19 +404,21 @@
       <div class="quote hi">“45 सालों से आपकी सेवा में लगातार — शुद्धता व सही दाम की गारंटी!”</div>
       <div class="stats">
         <div class="stat"><b>45+</b><span>Years serving</span></div>
-        <div class="stat"><b>4.5★</b><span>Google rating</span></div>
+        <div class="stat"><b>4.6★</b><span>Google rating</span></div>
         <div class="stat"><b>14 hrs</b><span>Open every day</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="order">
-  <div class="wrap">
+<div class="order-modal" id="order" hidden role="dialog" aria-modal="true" aria-labelledby="orderTitle">
+  <div class="om-backdrop" data-close></div>
+  <div class="om-panel" id="omPanel" tabindex="-1">
+    <button type="button" class="om-close" data-close aria-label="Close order form">×</button>
     <div class="order-head">
       <div>
         <span class="eyebrow">Order in advance · पहले से ऑर्डर करें</span>
-        <h2>Order now, pick up when it's ready</h2>
+        <h2 id="orderTitle">Order now, pick up when it's ready</h2>
         <p class="hi order-hi">ऑर्डर करें, तैयार होने पर दुकान से ले जाएँ</p>
         <p class="lead">Add your items, choose a pickup time and send the list to us on WhatsApp. We pack it and keep it ready at the counter. <span class="hi">सामान की लिस्ट भेजें, हम तैयार रखेंगे।</span></p>
       </div>
@@ -471,7 +492,7 @@
       <button type="button" class="btn btn-outline" id="newOrder">Start a new order</button>
     </div>
   </div>
-</section>
+</div>
 
 <section id="products">
   <div class="wrap">
@@ -547,15 +568,16 @@
     <div class="rev-grid">
       <div class="rev-summary">
         <div class="g-logo" aria-hidden="true"><span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC05">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span></div>
-        <div class="score">4.5</div>
-        <div class="stars" aria-label="Rated 4.5 out of 5"><span class="fill" style="width:90%">★★★★★</span>★★★★★</div>
-        <div class="muted">Based on 4 Google reviews</div>
+        <div class="score">4.6</div>
+        <div class="stars" aria-label="Rated 4.6 out of 5"><span class="fill" style="width:92%">★★★★★</span>★★★★★</div>
+        <div class="muted">Based on 5 Google reviews</div>
         <div class="rev-actions">
           <a href="https://www.google.com/search?q=Shankar+Store+Rawla+Mandi#lrd=0x393e6546a06c790d:0xdfc7efd429cc168f,1,,,," target="_blank" rel="noopener" class="btn btn-primary">See all reviews</a>
           <a href="https://www.google.com/search?q=Shankar+Store+Rawla+Mandi#lrd=0x393e6546a06c790d:0xdfc7efd429cc168f,3,,,," target="_blank" rel="noopener" class="btn btn-outline">✍️ Write a review</a>
         </div>
       </div>
       <div class="rev-list">
+        <figure class="rev"><div class="who"><span class="avatar" style="background:#16a34a">S</span><div><b>Shyam Kumar</b><small>Google review · New</small></div></div><blockquote class="hi">“यहाँ केवल समान नहीं भरोसा भी मिलता है 👌🏻”</blockquote><small class="rev-tr">“Here you get not only goods but also trust.”</small></figure>
         <figure class="rev"><div class="who"><span class="avatar">D</span><div><b>Dinesh Chandak</b><small>Google review</small></div></div><blockquote>“Best quality”</blockquote></figure>
         <figure class="rev"><div class="who"><span class="avatar" style="background:#2563eb">M</span><div><b>Manish Baghel</b><small>Local Guide · Google review</small></div></div><blockquote>“Nice”</blockquote></figure>
         <figure class="rev cta-rev"><b>Shopped with us?</b><p>Your review helps neighbours in Rawla Mandi find a store they can trust.</p><a href="https://www.google.com/search?q=Shankar+Store+Rawla+Mandi#lrd=0x393e6546a06c790d:0xdfc7efd429cc168f,3,,,," target="_blank" rel="noopener">Leave a Google review →</a></figure>
@@ -656,6 +678,37 @@
 
     const $ = id => document.getElementById(id);
     const form = $('orderForm'); if (!form) return;
+
+    // Popup open / close
+    const modal = $('order'), panel = $('omPanel');
+    let lastFocus = null;
+    function openOrder() {
+      if (!modal.hidden) return;
+      lastFocus = document.activeElement;
+      modal.hidden = false; document.body.classList.add('modal-open');
+      panel.scrollTop = 0; panel.focus();
+      if (location.hash !== '#order') history.replaceState(null, '', '#order');
+    }
+    function closeOrder() {
+      if (modal.hidden) return;
+      modal.hidden = true; document.body.classList.remove('modal-open');
+      if (location.hash === '#order') history.replaceState(null, '', location.pathname + location.search);
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+    document.querySelectorAll('.order-open, a[href="#order"]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); openOrder(); }));
+    modal.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', closeOrder));
+    document.addEventListener('keydown', e => {
+      if (modal.hidden) return;
+      if (e.key === 'Escape') closeOrder();
+      if (e.key === 'Tab') {   // keep keyboard focus inside the popup
+        const f = [...modal.querySelectorAll('button, [href], input, select, textarea')].filter(x => !x.disabled && x.offsetParent !== null);
+        if (!f.length) return;
+        if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
+        else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
+      }
+    });
+    if (location.hash === '#order') openOrder();
+    addEventListener('hashchange', () => { if (location.hash === '#order') openOrder(); });
     const rows = $('itemRows'), timeSel = $('oTime'), readyBox = $('readyBox'), msg = $('formMsg');
 
     // Current date/time in India, whatever the visitor's phone timezone is
@@ -786,13 +839,13 @@
       if (w) { try { w.opener = null; } catch (e) {} } else location.href = url;
       $('photoStep').hidden = !photo;
       form.hidden = true; $('orderDone').hidden = false;
-      $('orderDone').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      $('omPanel').scrollTop = 0;
       try { localStorage.removeItem(KEY); } catch (e) {}
     });
     $('newOrder').onclick = () => {
       rows.innerHTML = ''; [{}, {}, {}].forEach(addRow); $('oNotes').value = ''; showPhoto(null); $('photoStep').hidden = true;
       form.hidden = false; $('orderDone').hidden = true; refreshTimes(false);
-      $('order').scrollIntoView({ behavior: 'smooth' });
+      $('omPanel').scrollTop = 0;
     };
   })();
 
